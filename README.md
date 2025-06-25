@@ -25,6 +25,11 @@ git clone https://github.com/yangzongzhuan/RuoYi-Vue3.git
 # 进入项目目录
 cd RuoYi-Vue3
 
+#使用nvm切换到nodejsv20最新稳定版
+nvm install 20  
+nvm alias default 20
+#node.js 版本要求 >= 18.0.0
+npm install -g yarn
 # 安装依赖
 yarn --registry=https://registry.npmmirror.com
 
