@@ -8,7 +8,10 @@
 	<a href="https://gitee.com/y_project/RuoYi-Vue"><img src="https://img.shields.io/badge/RuoYi-v3.9.0-brightgreen.svg"></a>
 	<a href="https://gitee.com/y_project/RuoYi-Vue/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
 </p>
-
+若依版本号：RuoYi v3.9.0
+后端源码：https://gitee.com/y_project/RuoYi-Vue
+RUOYI-UI3前端源码： https://github.com/yangzongzhuan/RuoYi-Vue3
+文档：https://doc.ruoyi.vip/ruoyi-vue/
 ## 平台简介
 
 * 本仓库为前端技术栈 [Vue3](https://v3.cn.vuejs.org) + [Element Plus](https://element-plus.org/zh-CN) + [Vite](https://cn.vitejs.dev) 版本。

@@ -1,6 +1,7 @@
 <template>
   <div class="navbar">
-    <hamburger id="hamburger-container" :is-active="appStore.sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <!-- 汉堡按钮隐藏 -->
+    <!-- <hamburger id="hamburger-container" :is-active="appStore.sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" /> -->
     <breadcrumb v-if="!settingsStore.topNav" id="breadcrumb-container" class="breadcrumb-container" />
     <top-nav v-if="settingsStore.topNav" id="topmenu-container" class="topmenu-container" />
 
@@ -8,7 +9,7 @@
       <template v-if="appStore.device !== 'mobile'">
         <header-search id="header-search" class="right-menu-item" />
 
-        <el-tooltip content="源码地址" effect="dark" placement="bottom">
+        <!-- <el-tooltip content="源码地址" effect="dark" placement="bottom">
           <ruo-yi-git id="ruoyi-git" class="right-menu-item hover-effect" />
         </el-tooltip>
 
@@ -27,7 +28,7 @@
 
         <el-tooltip content="布局大小" effect="dark" placement="bottom">
           <size-select id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip>
+        </el-tooltip> -->
       </template>
 
       <el-dropdown @command="handleCommand" class="avatar-container right-menu-item hover-effect" trigger="hover">
@@ -71,6 +72,7 @@ const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
 
+// 侧边栏收缩按钮
 function toggleSideBar() {
   appStore.toggleSideBar()
 }
@@ -111,11 +113,13 @@ function toggleTheme() {
 </script>
 
 <style lang='scss' scoped>
+// 一级蓝色背景
 .navbar {
-  height: 50px;
+  height: 70px;
   overflow: hidden;
   position: relative;
-  background: var(--navbar-bg);
+  // background: var(--navbar-bg);
+  background: #1b5fb5;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
@@ -156,11 +160,16 @@ function toggleTheme() {
     }
 
     .right-menu-item {
-      display: inline-block;
+      display: flex;
       padding: 0 8px;
       height: 100%;
       font-size: 18px;
-      color: #5a5e66;
+      //右侧菜单文字颜色（同时影响svg图标颜色）
+      color: #fff;
+      // color: #5a5e66;
+
+      // 右侧按钮垂直居中
+      align-items: center; 
       vertical-align: text-bottom;
 
       &.hover-effect {
@@ -191,7 +200,7 @@ function toggleTheme() {
       padding-right: 0px;
 
       .avatar-wrapper {
-        margin-top: 10px;
+        margin-top: 0px;
         right: 5px;
         position: relative;
 

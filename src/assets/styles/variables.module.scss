@@ -9,10 +9,11 @@ $yellow: #FEC171;
 $panGreen: #30B08F;
 
 // 默认主题变量
-$menuText: #bfcbd9;
+// 菜单字体颜色
+$menuText: #ffffff;
 $menuActiveText: #409eff;
-$menuBg: #304156;
-$menuHover: #263445;
+$menuBg: #1b5fb5;
+$menuHover: #1b5fb5;
 
 // 浅色主题theme-light
 $menuLightBg: #ffffff;
@@ -25,11 +26,11 @@ $base-sidebar-width: 200px;
 $sideBarWidth: 200px;
 
 // 菜单暗色变量
-$base-menu-color: #bfcbd9;
+$base-menu-color: #ffffff;
 $base-menu-color-active: #f4f4f5;
 $base-menu-background: #304156;
 $base-sub-menu-background: #1f2d3d;
-$base-sub-menu-hover: #001528;
+$base-sub-menu-hover: #1b5fb5;
 
 // 组件变量
 $--color-primary: #409EFF;
@@ -91,15 +92,16 @@ html.dark {
   --el-border-color-light: #434343;
 
   /* 侧边栏 */
-  --sidebar-bg: #141414;
+  --sidebar-bg: #1b5fb5;
   --sidebar-text: #ffffff;
-  --menu-hover: #2d2d2d;
+  // --menu-hover: #2d2d2d;
+  --menu-hover: #1b5fb5;
   --menu-active-text: #{$menuActiveText};
 
   /* 顶部导航栏 */
-  --navbar-bg: #141414;
+  --navbar-bg: #1b5fb5;
   --navbar-text: #ffffff;
-  --navbar-hover: #141414;
+  --navbar-hover: #1b5fb5;
 
   /* 标签栏 */
   --tags-bg: #141414;

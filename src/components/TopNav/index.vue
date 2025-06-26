@@ -7,10 +7,15 @@
   >
     <template v-for="(item, index) in topMenus">
       <el-menu-item :style="{'--theme': theme}" :index="item.path" :key="index" v-if="index < visibleNumber">
+
+      <div style="display: flex; flex-direction: column; align-items: center;">
         <svg-icon
-        v-if="item.meta && item.meta.icon && item.meta.icon !== '#'"
-        :icon-class="item.meta.icon"/>
-        {{ item.meta.title }}
+          v-if="item.meta && item.meta.icon && item.meta.icon !== '#'"
+          :icon-class="item.meta.icon"
+          style="margin: 0;"/>
+        <span class="menu-title">{{ item.meta.title }}</span>
+      </div>
+
       </el-menu-item>
     </template>
 
@@ -22,10 +27,15 @@
           :index="item.path"
           :key="index"
           v-if="index >= visibleNumber">
-        <svg-icon
-          v-if="item.meta && item.meta.icon && item.meta.icon !== '#'"
-          :icon-class="item.meta.icon"/>
-        {{ item.meta.title }}
+
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <svg-icon
+              v-if="item.meta && item.meta.icon && item.meta.icon !== '#'"
+              :icon-class="item.meta.icon"
+              style="margin: 0;"/>
+            <span>{{ item.meta.title }}</span>
+          </div>
+
         </el-menu-item>
       </template>
     </el-sub-menu>
@@ -38,6 +48,7 @@ import { isHttp } from '@/utils/validate'
 import useAppStore from '@/store/modules/app'
 import useSettingsStore from '@/store/modules/settings'
 import usePermissionStore from '@/store/modules/permission'
+import variables from '@/assets/styles/variables.module.scss'
 
 // 顶部栏初始数
 const visibleNumber = ref(null)
@@ -54,6 +65,7 @@ const router = useRouter()
 
 // 主题颜色
 const theme = computed(() => settingsStore.theme)
+const sideTheme = computed(() => settingsStore.sideTheme)
 // 所有的路由信息
 const routers = computed(() => permissionStore.topbarRouters)
 
@@ -72,6 +84,24 @@ const topMenus = computed(() => {
   })
   return topMenus
 })
+
+
+// 获取菜单背景色
+const getMenuBackground = computed(() => {
+  if (settingsStore.isDark) {
+    return 'var(--sidebar-bg)'
+  }
+  return sideTheme.value === 'theme-dark' ? variables.menuBg : variables.menuLightBg
+})
+
+// 获取菜单文字颜色
+const getMenuTextColor = computed(() => {
+  if (settingsStore.isDark) {
+    return 'var(--sidebar-text)'
+  }
+  return sideTheme.value === 'theme-dark' ? variables.menuText : variables.menuLightText
+})
+
 
 // 设置子路由
 const childrenMenus = computed(() => {
@@ -168,14 +198,17 @@ onBeforeUnmount(() => {
 onMounted(() => {
   setVisibleNumber()
 })
+
 </script>
 
 <style lang="scss">
 .topmenu-container.el-menu--horizontal > .el-menu-item {
   float: left;
-  height: 50px !important;
-  line-height: 50px !important;
-  color: #999093 !important;
+  height: 70px !important;
+  line-height: 70px !important;
+  // 顶部菜单文字字体颜色
+  color: var(--847c2ff5-getMenuTextColor);
+  // color: #999093 !important;
   padding: 0 5px !important;
   margin: 0 10px !important;
 }
@@ -213,5 +246,51 @@ onMounted(() => {
   margin-top: 0px;
 }
 
+.topmenu-container .el-menu-item,
+.topmenu-container .el-sub-menu .el-menu-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50px !important;
+  line-height: normal !important;
+}
 
+.topmenu-container .el-menu-item .svg-icon {
+  margin-right: 0 !important;
+}
+
+
+// 取消水平模式菜单下的下划线边框
+.el-menu--horizontal {
+  border-bottom: none !important;
+
+  background-color: #1b5fb5;
+}
+
+//顶部菜单栏
+.el-menu-item{
+  color: v-bind(getMenuTextColor);
+
+  //菜单选中背景颜色
+  &.is-active {
+    color: var(--menu-active-text, #409eff);
+    background-color: var(--menu-hover, #1b5fb5) !important;
+  }
+  //顶部菜单悬浮背景颜色
+  &:hover {
+    background-color: var(--menu-hover, #1b5fb5) !important;
+  }
+}
+//顶部菜单图标
+.topmenu-container .el-menu-item .svg-icon {
+  transform: scale(2); // 放大图标
+  margin-top: 30px; // 向下移动图标，靠近字体
+}
+//顶部菜单文字
+.topmenu-container .el-menu-item .menu-title {
+  height: 20px;
+  transform: translateY(-10px); // 文字整体往上移动4px
+
+}
 </style>

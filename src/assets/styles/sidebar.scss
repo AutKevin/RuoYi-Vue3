@@ -102,8 +102,10 @@
     }
 
     & .theme-dark .nest-menu .el-sub-menu>.el-sub-menu__title,
+    //左侧栏二级菜单背景颜色
     & .theme-dark .el-sub-menu .el-menu-item {
-      background-color: vars.$base-sub-menu-background;
+      // background-color: vars.$base-sub-menu-background;
+      background-color: #1b5fb5;
 
       &:hover {
         background-color: vars.$base-sub-menu-hover !important;
